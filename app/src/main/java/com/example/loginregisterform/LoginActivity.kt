@@ -18,7 +18,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private var btnLogin: AppCompatButton? = null
     private var btnRegister: AppCompatButton? = null
     var pref: SharedPreferences? = null
-    val MIN_PASSWORD_LENGTH = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,9 +84,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                ).show()
 
            }
-
-
-            else -> {
+           else -> {
                 loginForm()
             }
 
@@ -101,35 +98,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun validInput1():Boolean{
-        if (!isValidPhoneNumber(edtMobile?.text.toString())) {
-            edtMobile?.error = "please Enter a Valid Mobile Number"
-            return false
-        }
-
-        // checking the proper email format
-        if (!isEmailValid(edtEmail?.text.toString())) {
-            edtEmail?.error = "Please Enter Valid Email"
-            return false
-        }
-
-        // checking minimum password Length
-        if (edtPassword?.text?.length!! < MIN_PASSWORD_LENGTH) {
-            edtPassword?.error =
-                "Password Length must be more than " + MIN_PASSWORD_LENGTH + "characters"
-            return false
-        }
-        return true
-
-    }
-
-    fun isEmailValid(email: String?): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    fun isValidPhoneNumber(phone: CharSequence?): Boolean {
-        return Patterns.PHONE.matcher(phone).matches()
-    }
 
 
     private fun register() {
